@@ -4,29 +4,30 @@ const mongoose = require("mongoose");
 const path = require("path");
 const routers = require("./routes/todo");
 const dotenv= require("dotenv");
+const cors=require("cors")
 
 dotenv.config();
 
 const app = express();
 
-// Parse JSON
-app.use(bodyParser.json());
-
-// Serve React static files
-app.use(express.static(path.join(__dirname, "dist")));
-
-// MongoDB connection
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// API endpoint for todo
+app.use(cors({
+  origin: "https://todocic.netlify.app", // React app URL
+  credentials: true,  
+  allowedHeaders: ['Content-Type', 'Authorization'],             // only if you're using cookies
+}));
+
+app.use(bodyParser.json());
+
 app.use("/todo", routers);
 
-// Serve React frontend for unmatched routes
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.send("Hello world");
 });
 
 app.listen(3000, () => {
