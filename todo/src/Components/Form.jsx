@@ -15,7 +15,7 @@ function Form() {
     try {
       if (isEditing) {
         // PUT request to update
-        const response = await fetch(`https://to-do-8zy5.onrender.com/${editId}`, {
+        const response = await fetch(`https://to-do-8zy5.onrender.com/todo/${editId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -67,7 +67,7 @@ function Form() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`https://to-do-8zy5.onrender.com/${id}`, {
+      const res = await fetch(`https://to-do-8zy5.onrender.com/todo/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) return console.log("Couldnt delete");
