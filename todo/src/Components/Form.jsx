@@ -15,7 +15,7 @@ function Form() {
     try {
       if (isEditing) {
         // PUT request to update
-        const response = await fetch(`http://localhost:3000/todo/${editId}`, {
+        const response = await fetch(`https://to-do-8zy5.onrender.com/${editId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -33,7 +33,7 @@ function Form() {
         setEditId(null);
       } else {
         // POST request to create
-        const response = await fetch("http://localhost:3000/todo", {
+        const response = await fetch("https://to-do-8zy5.onrender.com/todo", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -55,7 +55,7 @@ function Form() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/todo");
+        const res = await fetch("https://to-do-8zy5.onrender.com/todo");
         const data = await res.json();
         setTodolist(data);
       } catch (err) {
@@ -67,7 +67,7 @@ function Form() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/todo/${id}`, {
+      const res = await fetch(`https://to-do-8zy5.onrender.com/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) return console.log("Couldnt delete");
