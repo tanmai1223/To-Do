@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 const routers = require("./routes/todo");
+const dotenv= require("dotenv");
+
+dotenv.config();
 
 const app = express();
 
@@ -14,7 +17,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 // MongoDB connection
 mongoose
-  .connect("mongodb+srv://htanmai23:VrFPFThXhoCFj9pN@cuvette.4goceku.mongodb.net/?retryWrites=true&w=majority&appName=Cuvette")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
